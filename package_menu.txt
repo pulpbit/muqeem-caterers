@@ -1,0 +1,329 @@
+*OUR PACKAGES*
+
+*NORMAL PACKAGE*
+2 Non Veg Starters
+4 Veg Starters
+2 Mutton Dishes
+2 Chiken Dishes
+2 Sweet Dishes
+1 Desert
+1 Hot Drink
+1 Cold Drink
+Salad
+Limited Bottled Water
+Saar Water
+Service
+Crockery
+
+*STANDARD PACKAGE*
+3 Non Veg Starters
+6 Veg Starters
+1 Welcome Drink
+2 Mutton Dishes
+3 Chicken Dishes
+2 Sweet Dishes
+2 Deserts
+Cafeteria
+Salad
+2 Bottled Water
+Jaar Water
+Service
+Crockery
+LED Counters
+
+*VIP PACKAGE*
+3 Non Veg Starters
+7 Veg Starters
+Welcome Drink
+3 Mutton Dishes
+4 Chiken Dishes
+3 Sweet Dishes
+2 Deserts
+Cafeteria
+Fruit
+Pan
+3 Types Of Salad
+LED Counters
+
+
+*NON VEGETARIAN*
+*STARTERS*
+Kakori Seekh Kabab
+Nargisi Kofta
+Cheese Kofta
+Pasanda Kabab
+Seek Kalegi
+Seekh Boti
+Kulhad Khichda
+Chiken Tikka
+Chiken Seekh Kabab
+Chiken Tangdi Kabab
+Chiken Barra
+Afghani Murgh Tikka
+Hariyali Murgh Tikka
+Chiken Reshmi Kabab
+Chiken Malai Tikka
+Al Baik Chiken
+Fried Chiken
+Murgh Tandoori
+Chiken Spring Roll
+Chiken Cutlet
+Fried Mutton Chaap
+Mutton Barra
+Fish Amritsari
+Achari Fish Tikka
+Fish Tikka
+Fish Al Baik
+Fish Fry
+Fish Finger
+
+
+*MAIN COURSE*
+*MUTTON*
+Mutton Qourma
+Mutton Strew
+Mutton Mughlai
+Mutton Rizala
+Mutton Do Pyaza
+Mutton Achari
+Mutton Kadhai
+Mutton Nihari
+Tawa Gosht
+Boti Kabab
+Galawati Kabab
+Mutton Bhuna Gosht
+Moong Gosht
+Chana Gosht
+
+*CHIKEN*
+Murgh Qourma
+Dum Ka Murgh
+Murgh Do Pyaza
+Murgh Mahi Tava
+Murgh Masala
+Murgh Kadhai
+Chiken Tikka Masala
+Chiken Chilli
+Murgh Musallam
+Butter Chiken
+Chiken Kali Mirch
+Chiken Rizala
+Chiken Achari
+Chiken Changezi
+Chiken White Qourma
+Chiken Haleem
+
+
+*FISH OF PRUNNS*
+Fish Musallam
+Fish Mahi Tava
+Fish Curry
+Bengali Fish Curry
+Prawns Curry
+
+*SHORBA*
+Chiken Shorba
+Mutton Shorba
+Paya Shorba
+Chiken Lemon Coriander
+Mutton Dhaniya Soup
+
+
+*BIRYANI OF RICE**
+Lucknowi Mutton Biryani
+Lucknowi Chiken Biryani
+Prawns Biryani
+Fish Biryani
+Hydrabadi Mutton Biryani
+Hydrabadi Chiken Biryani
+Afghani Pulao
+
+*Deserts*
+Shahi Tukda
+Zafrani Kheer
+Akhrot Kheer
+Gajar Halwa
+Moong Halwa
+Channe Ka Halwa
+Badaam Halwa
+Pineapple Zarda
+Gajar Seb Ki Kheer
+Lauki Halwa
+Zarda
+
+
+*Roti ki Tokri*
+Sheermal
+Ghilafi Kulcha
+Dhaniya Roti
+Peshawari Naan
+Rumali Roti
+Mughlai Paratha
+Laccha Paratha
+Khameeri Roti
+
+*After Dinner*
+Rabdi Jalebi
+Imarti Rabdi
+Kesariya Doodh
+Kesariya Makkhan
+Dry Fruit Kulfi
+Kashmiri Chai
+Ras Malai
+Gulab Jammun
+
+
+*ZAFRAAN SPECIALITY*
+Khichda
+Tawa Chaap
+Hyderabadi Haleem
+Bakre Ki Raan
+Bakra Musallam
+Lagan Bater
+Bater Fry
+Bater Musallam
+Tawa Bheja
+Tawa Kaleji
+Qeema Kaju
+Paneer Seekh Kabab
+Afghani Paneer Tikka
+Achari Paneer Tikka
+Paneer Chilli Dry
+Honey Chilli Potato
+French Chips
+
+
+*VEGETARIAN*
+*STARTERS*
+Paneer Seekh Kabab
+Afghani Paneer Tikka
+Achari Paneer Tikka
+Paneer Chilli Dry
+Honey Chilli Potato
+French Chips
+Spring Roll
+Hara Bhara Kabab
+Chatpati Chaat(Aloo or Matar)
+Pyaaz Pakaudi
+Paani Ke Batashe
+Hakka Noodles
+Ried Rice
+Manchurian Dry
+Veg Kofta
+Pizza
+Dosa
+Pav Bhaji
+Soya Chaap
+Tomato Soup
+Baby Corn Soup
+Hot And Sweet Soup
+Vegatable Soup
+Mushroom Soup
+Cream Broccoli Soup
+Hot Manchuriyan Soup
+
+
+*MAIN COURSE*
+Shahi Paneer
+Kadhai Paneer
+Palak Paneer
+Paneer Butter Masala
+Matter Paneer
+Paneer Do Pyaaza
+Matter Paneer
+Paneer Do Pyaaza
+Paneer Bhurji
+Paneer Korma
+Kadhai Vegatable
+Mix Vegetable
+Sarson Ka Saag
+Gobhi Musallam
+Bhindi Do Pyaaza
+Pindi Chola
+Baigan Ka Bharta
+Zeera Aloo
+Paneer Tikka Masala
+Paneer Kali Mirch
+Paneer Masala
+Malai Koft
+Chilli Paneer Gravy
+Veg Manchurian Gravy
+Dum Aloo Masala
+Navratan Qourma
+
+
+*DALL KA TADKA
+Daal Tadka
+Daal Fry
+Rajma
+Daal Makhni
+Lauki Ka Daalcha
+Pachmela Daal
+Kaddu Ka Daalcha
+Veg Khichda
+
+*TAWA*
+Bharwa Karela
+Bharwa Shimla Mirch
+Bharwa Parwal
+Bhindi Fry
+Karela Fry
+Tawa Sabzi
+
+*ROTI KI TOKRI*
+Mughal Paratha
+Bhatoora
+Aloo Kulcha
+Paneer Kulcha
+Makke KI roti
+Butter Garlic Naan
+Cheese Naan
+Roti Ki Tokri
+Butter Naan
+Plain Naan
+Tandoori Roti
+Butter Roti
+Missi Roti
+Poori
+Rumali roti
+
+
+*RICE*
+Veg Biryani
+Veg Pulao
+Zerra Rice
+Paneer Pulao
+Mushroom Biryani
+Hyderabadi Veg Biryani
+Mattar Pulao
+
+*AFTER DINNER*
+Rabdi Jalebi
+Imarti Rabdi
+Kesariya Doodh
+Kesariya Makkhan
+Dry Fuit Kulfi
+Kashmiri Chai
+Ras Malai
+Gulab Jammun
+
+*DESERTS*
+Zafrani Kheer
+Gajar Halwa
+Moong Halwa
+Channe Ka Halwa
+Badaam Halwa
+Gajar Seb Ki Kheer
+Lauki Halwa
+Meetha Dahi Bada
+
+*ZAFRAAN SPECIALITY*
+Soya Chaap Biryani
+Achari Soya Chaap
+Malai Soya Chaap
+Veg Galawti Kabab
+Dimsums
+Momos
+Sawted Vegatable
+Potli Samosa
+Shorma

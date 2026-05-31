@@ -1,0 +1,16 @@
+{
+  "name": "muqeem-caterers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Muqeem Caterers - Complete Catering Business Management System",
+  "workspaces": [
+    "apps/backend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev -w apps/backend",
+    "deploy:backend": "npm run deploy -w apps/backend"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

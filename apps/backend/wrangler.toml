@@ -1,0 +1,14 @@
+name = "muqeem-caterers-api"
+main = "src/index.js"
+compatibility_date = "2026-05-31"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "muqeem-db"
+database_id = "6110d36b-ee67-435f-a7f0-930b2e3b643d"
+
+# Environment variables
+[vars]
+APP_NAME = "Muqeem Caterers"
+APP_ENV = "production"
