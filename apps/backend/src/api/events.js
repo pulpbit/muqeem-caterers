@@ -14,8 +14,8 @@ export async function listAllEvents(c) {
 
 export async function getEvent(c) {
   const id = c.req.param('id');
-  const event = await eventService.getEventById(c, id);
-  return c.json({ event });
+  const result = await eventService.getEventWithSelections(c, id);
+  return c.json(result);
 }
 
 export async function createEvent(c) {

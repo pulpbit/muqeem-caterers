@@ -1,5 +1,6 @@
 import { NotFoundError } from '../core/errors.js';
 import * as eventRepo from '../repositories/eventRepository.js';
+import * as menuSelRepo from '../repositories/eventMenuSelectionRepository.js';
 
 export async function getEvents(c, query = {}) {
   const year = parseInt(query.year) || new Date().getFullYear();
@@ -22,6 +23,16 @@ export async function getEventById(c, id) {
   const event = await eventRepo.findById(c, id);
   if (!event) throw new NotFoundError('Event not found');
   return event;
+}
+
+export async function getEventWithSelections(c, id) {
+  id = Number(id);
+  const event = await eventRepo.findById(c, id);
+  if (!event) throw new NotFoundError('Event not found');
+
+  const { results } = await menuSelRepo.findByEventId(c, id);
+
+  return { event, menu_selections: results || [] };
 }
 
 export async function createEvent(c, data) {

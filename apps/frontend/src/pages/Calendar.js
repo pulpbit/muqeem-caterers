@@ -277,62 +277,114 @@ function renderListView() {
 
 // ─── Event Detail Modal ───
 
-function openEventDetail(id) {
+async function openEventDetail(id) {
   const ev = events.find(e => e.id === id);
   if (!ev) return;
 
+  // Fetch full event detail with menu selections
+  const detailEl = document.getElementById('event-detail');
+  detailEl.innerHTML = `
+    <div class="modal-overlay">
+      <div class="modal" style="max-width:560px;">
+        <div class="modal__header">
+          <h3 class="modal__title">Loading...</h3>
+        </div>
+        <div class="modal__body" style="text-align:center;padding:32px;">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  let eventDetail;
+  try {
+    const result = await api.get(`/events/${id}`);
+    eventDetail = { ...result.event, menu_selections: result.menu_selections || [] };
+  } catch {
+    detailEl.innerHTML = '';
+    showToast('Failed to load event details', 'error');
+    return;
+  }
+
   const isAdmin = authState.isLoggedIn;
-  const colors = STATUS_COLORS[ev.status] || { bg: '#e8eaed', text: '#5f6368' };
+  const colors = STATUS_COLORS[eventDetail.status] || { bg: '#e8eaed', text: '#5f6368' };
   const statusOptions = ['Inquiry', 'Quotation Sent', 'Negotiation', 'Confirmed', 'Completed', 'Cancelled'];
 
-  const detail = document.getElementById('event-detail');
-  detail.innerHTML = `
+  // Group selections by category
+  const selectionsByCat = {};
+  for (const sel of eventDetail.menu_selections) {
+    const cat = sel.category_name || 'Other';
+    if (!selectionsByCat[cat]) selectionsByCat[cat] = [];
+    selectionsByCat[cat].push(sel);
+  }
+
+  detailEl.innerHTML = `
     <div class="modal-overlay">
-      <div class="modal" style="max-width:500px;">
+      <div class="modal" style="max-width:560px;">
         <div class="modal__header">
-          <h3 class="modal__title">${ev.event_code}</h3>
+          <h3 class="modal__title">${eventDetail.event_code}</h3>
           <button class="modal__close" id="detail-close">&times;</button>
         </div>
         <div class="modal__body">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
               <label class="form-label">Customer</label>
-              <p style="font-weight:500;">${escapeHtml(ev.customer_name)}</p>
+              <p style="font-weight:500;">${escapeHtml(eventDetail.customer_name)}</p>
             </div>
             <div>
               <label class="form-label">Mobile</label>
-              <p>${ev.mobile}</p>
+              <p>${eventDetail.mobile}</p>
             </div>
             <div>
               <label class="form-label">Event Type</label>
-              <p>${ev.event_type}</p>
+              <p>${eventDetail.event_type}</p>
             </div>
             <div>
               <label class="form-label">Date</label>
-              <p>${formatDate(ev.event_date)}</p>
+              <p>${formatDate(eventDetail.event_date)}</p>
             </div>
             <div>
               <label class="form-label">Venue</label>
-              <p>${ev.venue || '-'}</p>
+              <p>${eventDetail.venue || '-'}</p>
             </div>
             <div>
               <label class="form-label">Guests</label>
-              <p>${ev.guest_count || '-'}</p>
+              <p>${eventDetail.guest_count || '-'}</p>
             </div>
             <div style="grid-column:span 2;">
               <label class="form-label">Status</label>
-              <span class="badge" style="background:${colors.bg};color:${colors.text};">${ev.status}</span>
+              <span class="badge" style="background:${colors.bg};color:${colors.text};">${eventDetail.status}</span>
             </div>
-            ${ev.email ? `<div style="grid-column:span 2;"><label class="form-label">Email</label><p>${escapeHtml(ev.email)}</p></div>` : ''}
-            ${ev.notes ? `<div style="grid-column:span 2;"><label class="form-label">Notes</label><p style="font-size:0.875rem;color:var(--color-gray-700)">${escapeHtml(ev.notes)}</p></div>` : ''}
+            ${eventDetail.email ? `<div style="grid-column:span 2;"><label class="form-label">Email</label><p>${escapeHtml(eventDetail.email)}</p></div>` : ''}
+            ${eventDetail.notes ? `<div style="grid-column:span 2;"><label class="form-label">Notes</label><p style="font-size:0.875rem;color:var(--color-gray-700)">${escapeHtml(eventDetail.notes)}</p></div>` : ''}
           </div>
+
+          ${eventDetail.menu_selections.length > 0 ? `
+            <hr style="margin:16px 0;border:none;border-top:1px solid var(--color-gray-200);">
+            <label class="form-label" style="margin-bottom:8px;">Selected Menu Items (${eventDetail.menu_selections.length})</label>
+            ${Object.entries(selectionsByCat).map(([cat, items]) => `
+              <details class="menu-section" ${Object.keys(selectionsByCat).length <= 2 ? 'open' : ''}>
+                <summary class="menu-section-header">
+                  ${escapeHtml(cat)}
+                  <span class="menu-section-count">${items.length}</span>
+                </summary>
+                <div class="menu-section-body">
+                  ${items.map(item => `
+                    <div style="padding:4px 0;font-size:0.813rem;">
+                      ${escapeHtml(item.item_name)}
+                    </div>
+                  `).join('')}
+                </div>
+              </details>
+            `).join('')}
+          ` : ''}
 
           ${isAdmin ? `
             <hr style="margin:16px 0;border:none;border-top:1px solid var(--color-gray-200);">
             <label class="form-label" for="detail-status">Update Status</label>
             <div style="display:flex;gap:8px;margin-top:4px;">
               <select id="detail-status" class="form-select" style="flex:1;">
-                ${statusOptions.map(s => `<option value="${s}" ${s === ev.status ? 'selected' : ''}>${s}</option>`).join('')}
+                ${statusOptions.map(s => `<option value="${s}" ${s === eventDetail.status ? 'selected' : ''}>${s}</option>`).join('')}
               </select>
               <button class="btn btn--primary btn--sm" id="detail-update-status">Update</button>
             </div>
@@ -348,20 +400,20 @@ function openEventDetail(id) {
 
   document.getElementById('detail-close').addEventListener('click', closeDetail);
   document.getElementById('detail-close-btn').addEventListener('click', closeDetail);
-  detail.addEventListener('click', (e) => {
+  detailEl.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-overlay')) closeDetail();
   });
 
   const editBtn = document.getElementById('detail-edit');
-  if (editBtn) editBtn.addEventListener('click', () => { closeDetail(); openEventModal(ev); });
+  if (editBtn) editBtn.addEventListener('click', () => { closeDetail(); openEventModal(eventDetail); });
 
   const updateBtn = document.getElementById('detail-update-status');
   if (updateBtn) {
     updateBtn.addEventListener('click', async () => {
       const newStatus = document.getElementById('detail-status').value;
       try {
-        const result = await api.patch(`/events/${ev.id}/status`, { status: newStatus });
-        const idx = events.findIndex(e => e.id === ev.id);
+        const result = await api.patch(`/events/${eventDetail.id}/status`, { status: newStatus });
+        const idx = events.findIndex(e => e.id === eventDetail.id);
         if (idx >= 0) events[idx] = result.event;
         closeDetail();
         renderContent();
