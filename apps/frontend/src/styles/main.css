@@ -564,6 +564,25 @@ tr:hover td {
   margin-top: 1px;
 }
 
+.menu-subgroup {
+  margin-bottom: 8px;
+}
+
+.menu-subgroup:not(:last-child) {
+  border-bottom: 1px solid var(--color-gray-100);
+  padding-bottom: 8px;
+}
+
+.menu-subgroup-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+  margin-bottom: 4px;
+  padding: 4px 0;
+}
+
 .menu-item-actions {
   display: flex;
   align-items: center;

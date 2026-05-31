@@ -136,10 +136,14 @@ function renderItems() {
     return;
   }
 
-  const itemsPerGroup = 20;
-  const groups = [];
-  for (let i = 0; i < filtered.length; i += itemsPerGroup) {
-    groups.push(filtered.slice(i, i + itemsPerGroup));
+  // Group items by sub-category (description)
+  const groups = {};
+  for (const item of filtered) {
+    const sub = item.description && item.description.startsWith('Sub:')
+      ? item.description.replace('Sub:', '').trim()
+      : '_main';
+    if (!groups[sub]) groups[sub] = [];
+    groups[sub].push(item);
   }
 
   container.innerHTML = `
@@ -147,13 +151,13 @@ function renderItems() {
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
         <h3 style="font-size:1rem;font-weight:600;">${catName} <span style="font-weight:400;color:var(--color-gray-500);font-size:0.875rem;">(${filtered.length} items)</span></h3>
       </div>
-      ${groups.map((group, gi) => `
-        <div class="menu-items-group" style="${gi > 0 ? 'border-top:1px solid var(--color-gray-200);padding-top:12px;margin-top:12px;' : ''}">
-          ${group.map(item => `
+      ${Object.entries(groups).map(([sub, subItems]) => `
+        <div class="menu-subgroup">
+          ${sub !== '_main' ? `<h4 class="menu-subgroup-title">${escapeHtml(sub)}</h4>` : ''}
+          ${subItems.map(item => `
             <div class="menu-item-row ${item.is_active ? '' : 'inactive'}">
               <div class="menu-item-info">
                 <span class="menu-item-name">${escapeHtml(item.name)}</span>
-                ${item.description ? `<span class="menu-item-desc">${escapeHtml(item.description)}</span>` : ''}
               </div>
               <div class="menu-item-actions">
                 <label class="toggle-switch" title="${item.is_active ? 'Disable' : 'Enable'}">
