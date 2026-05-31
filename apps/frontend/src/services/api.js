@@ -1,4 +1,11 @@
-const API_BASE = '/api';
+const PRODUCTION_API = 'https://muqeem-caterers.pulpbit.workers.dev/api';
+const DEV_API = '/api';
+
+const isProduction = window.location.hostname !== 'localhost'
+  && window.location.hostname !== '127.0.0.1'
+  && !window.location.hostname.includes('.local');
+
+const API_BASE = isProduction ? PRODUCTION_API : DEV_API;
 
 /**
  * Base API client with error handling.

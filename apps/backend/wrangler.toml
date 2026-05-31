@@ -1,4 +1,4 @@
-name = "muqeem-caterers-api"
+name = "muqeem-caterers"
 main = "src/index.js"
 compatibility_date = "2026-05-31"
 
