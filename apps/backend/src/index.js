@@ -6,6 +6,10 @@ import {
   listCategories, createCategory, updateCategory, deleteCategory,
   listItems, createItem, updateItem, deleteItem, toggleItem
 } from './api/menu.js';
+import {
+  listEvents, listAllEvents, getEvent, createEvent, updateEvent,
+  updateEventStatus, deleteEvent
+} from './api/events.js';
 import { requireAuth } from './core/middleware.js';
 
 const app = new Hono();
@@ -31,6 +35,15 @@ app.post('/api/menu/items', requireAuth, createItem);
 app.put('/api/menu/items/:id', requireAuth, updateItem);
 app.delete('/api/menu/items/:id', requireAuth, deleteItem);
 app.patch('/api/menu/items/:id/toggle', requireAuth, toggleItem);
+
+// Events
+app.get('/api/events', listEvents);
+app.get('/api/events/all', listAllEvents);
+app.get('/api/events/:id', getEvent);
+app.post('/api/events', createEvent);
+app.put('/api/events/:id', updateEvent);
+app.patch('/api/events/:id/status', updateEventStatus);
+app.delete('/api/events/:id', requireAuth, deleteEvent);
 
 app.notFound((c) => c.json({ error: 'Not found' }, 404));
 

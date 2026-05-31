@@ -3,6 +3,7 @@ import { renderHeader } from './components/Header.js';
 import { homePage } from './pages/Home.js';
 import { loginPage } from './pages/Login.js';
 import { menuPage } from './pages/Menu.js';
+import { calendarPage } from './pages/Calendar.js';
 import { checkSession } from './services/auth.js';
 import { authState } from './utils/authState.js';
 
@@ -37,10 +38,7 @@ router
     const app = document.getElementById('app');
     app.innerHTML = '<div class="container"><h1>Dashboard</h1><p>Coming soon in Phase 14.</p></div>';
   }))
-  .add('/calendar', requireAuth(async () => {
-    const app = document.getElementById('app');
-    app.innerHTML = '<div class="container"><h1>Calendar</h1><p>Coming soon in Phase 4.</p></div>';
-  }))
+  .add('/calendar', calendarPage)
   .add('/menu', requireAuth(menuPage));
 
 async function init() {
