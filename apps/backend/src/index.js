@@ -10,6 +10,7 @@ import {
   listEvents, listAllEvents, getEvent, createEvent, updateEvent,
   updateEventStatus, deleteEvent
 } from './api/events.js';
+import { handlePublicInquiry } from './api/public.js';
 import { requireAuth } from './core/middleware.js';
 
 const app = new Hono();
@@ -44,6 +45,9 @@ app.post('/api/events', createEvent);
 app.put('/api/events/:id', updateEvent);
 app.patch('/api/events/:id/status', updateEventStatus);
 app.delete('/api/events/:id', requireAuth, deleteEvent);
+
+// Public
+app.post('/api/public/inquiry', handlePublicInquiry);
 
 app.notFound((c) => c.json({ error: 'Not found' }, 404));
 

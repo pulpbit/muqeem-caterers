@@ -4,6 +4,7 @@ import { homePage } from './pages/Home.js';
 import { loginPage } from './pages/Login.js';
 import { menuPage } from './pages/Menu.js';
 import { calendarPage } from './pages/Calendar.js';
+import { eventPlannerPage } from './pages/EventPlanner.js';
 import { checkSession } from './services/auth.js';
 import { authState } from './utils/authState.js';
 
@@ -30,10 +31,7 @@ function requireAuth(handler) {
 router
   .add('/', homePage)
   .add('/login', loginPage)
-  .add('/event-planner', async () => {
-    const app = document.getElementById('app');
-    app.innerHTML = '<div class="container"><h1>Event Planner</h1><p>Coming soon in Phase 5.</p></div>';
-  })
+  .add('/event-planner', eventPlannerPage)
   .add('/dashboard', requireAuth(async () => {
     const app = document.getElementById('app');
     app.innerHTML = '<div class="container"><h1>Dashboard</h1><p>Coming soon in Phase 14.</p></div>';
