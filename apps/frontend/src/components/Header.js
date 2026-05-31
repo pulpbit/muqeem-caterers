@@ -1,40 +1,49 @@
 import { router } from '../utils/router.js';
+import { authState } from '../utils/authState.js';
+import { logout } from '../services/auth.js';
+
+let headerEl = null;
 
 /**
- * Render the app header.
- * @param {{ isLoggedIn: boolean, user: object|null }} state
+ * Render or update the app header based on auth state.
  */
-export function renderHeader(state) {
-  const header = document.getElementById('app-header');
-
-  if (!header) {
-    const app = document.getElementById('app');
-    const headerEl = document.createElement('header');
+export function renderHeader() {
+  if (!headerEl) {
+    headerEl = document.createElement('header');
     headerEl.id = 'app-header';
     headerEl.className = 'header';
+    const app = document.getElementById('app');
     app.parentNode.insertBefore(headerEl, app);
   }
 
-  const headerEl = document.getElementById('app-header');
+  const { isLoggedIn, user } = authState;
 
-  const navLinks = state.isLoggedIn
-    ? `
+  const brandLink = document.createElement('a');
+  brandLink.className = 'header__logo';
+  brandLink.textContent = 'Muqeem Caterers';
+  brandLink.href = '/';
+
+  const nav = document.createElement('nav');
+  nav.className = 'header__nav';
+
+  if (isLoggedIn && user) {
+    nav.innerHTML = `
       <a href="/dashboard" data-link>Dashboard</a>
       <a href="/calendar" data-link>Calendar</a>
       <a href="/menu" data-link>Menu</a>
-      <button id="btn-logout">Logout</button>
-    `
-    : `
-      <a href="/login" data-link>Login</a>
-      <a href="/event-planner" data-link>Plan Event</a>
+      <span style="font-size:0.813rem;color:var(--color-gray-500);padding:0 4px;">${user.name}</span>
+      <button id="btn-logout" class="btn btn--sm btn--secondary">Logout</button>
     `;
+  } else {
+    nav.innerHTML = `
+      <a href="/event-planner" data-link>Plan Event</a>
+      <a href="/login" data-link>Login</a>
+    `;
+  }
 
-  headerEl.innerHTML = `
-    <a href="/" class="header__logo" data-link>Muqeem Caterers</a>
-    <nav class="header__nav">
-      ${navLinks}
-    </nav>
-  `;
+  headerEl.innerHTML = '';
+  headerEl.appendChild(brandLink);
+  headerEl.appendChild(nav);
 
   headerEl.querySelectorAll('[data-link]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -46,13 +55,18 @@ export function renderHeader(state) {
   const logoutBtn = document.getElementById('btn-logout');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-      try {
-        const { api } = await import('../services/api.js');
-        await api.post('/auth/logout');
-        window.location.href = '/login';
-      } catch (err) {
-        window.location.href = '/login';
-      }
+      await logout();
+      router.navigate('/login');
     });
   }
+
+  brandLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    router.navigate('/');
+  });
 }
+
+// Re-render header when auth state changes
+authState.subscribe(() => {
+  if (headerEl) renderHeader();
+});
