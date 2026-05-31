@@ -243,7 +243,7 @@ function renderQuotationForm(eventId, existingQuotation = null) {
     </div>
   `;
 
-  cachedGuestCount = q?.guest_count || 0;
+  cachedGuestCount = Number(q?.guest_count) || cachedGuestCount || 0;
 
   document.getElementById('q-rate').addEventListener('input', recalcTotals);
   document.getElementById('q-service-fee').addEventListener('input', recalcTotals);

@@ -11,7 +11,7 @@ export async function handleLogin(c) {
 
   const { user, token } = await authService.login(c, username, password);
 
-  c.header('Set-Cookie', `session=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=86400`);
+  c.header('Set-Cookie', `session=${token}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=86400`);
 
   return c.json({ user });
 }
@@ -25,7 +25,7 @@ export async function handleLogout(c) {
 
   c.header(
     'Set-Cookie',
-    'session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0'
+    'session=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0'
   );
 
   return c.json({ message: 'Logged out successfully' });
