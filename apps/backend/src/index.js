@@ -11,6 +11,10 @@ import {
   updateEventStatus, deleteEvent
 } from './api/events.js';
 import { handlePublicInquiry } from './api/public.js';
+import {
+  getQuotationByEvent, getQuotation, createQuotation,
+  updateQuotation, updateQuotationStatus, deleteQuotation
+} from './api/quotations.js';
 import { requireAuth } from './core/middleware.js';
 
 const app = new Hono();
@@ -48,6 +52,14 @@ app.delete('/api/events/:id', requireAuth, deleteEvent);
 
 // Public
 app.post('/api/public/inquiry', handlePublicInquiry);
+
+// Quotations
+app.get('/api/quotations/event/:eventId', getQuotationByEvent);
+app.get('/api/quotations/:id', getQuotation);
+app.post('/api/quotations', requireAuth, createQuotation);
+app.put('/api/quotations/:id', requireAuth, updateQuotation);
+app.patch('/api/quotations/:id/status', requireAuth, updateQuotationStatus);
+app.delete('/api/quotations/:id', requireAuth, deleteQuotation);
 
 app.notFound((c) => c.json({ error: 'Not found' }, 404));
 

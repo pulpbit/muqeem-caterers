@@ -1,6 +1,7 @@
 import { api } from '../services/api.js';
 import { showToast } from '../utils/toast.js';
 import { authState } from '../utils/authState.js';
+import { router } from '../utils/router.js';
 
 const STATUS_COLORS = {
   'Inquiry': { bg: '#fef3cd', text: '#856404' },
@@ -392,6 +393,7 @@ async function openEventDetail(id) {
         </div>
         <div class="modal__footer">
           ${isAdmin ? `<button class="btn btn--secondary" id="detail-edit">Edit</button>` : ''}
+          ${isAdmin ? `<button class="btn btn--primary" id="detail-quotation">Quotation</button>` : ''}
           <button class="btn btn--secondary" id="detail-close-btn">Close</button>
         </div>
       </div>
@@ -406,6 +408,9 @@ async function openEventDetail(id) {
 
   const editBtn = document.getElementById('detail-edit');
   if (editBtn) editBtn.addEventListener('click', () => { closeDetail(); openEventModal(eventDetail); });
+
+  const quotBtn = document.getElementById('detail-quotation');
+  if (quotBtn) quotBtn.addEventListener('click', () => { closeDetail(); router.navigate(`/quotations?event=${eventDetail.id}`); });
 
   const updateBtn = document.getElementById('detail-update-status');
   if (updateBtn) {

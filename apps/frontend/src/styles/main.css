@@ -869,6 +869,24 @@ tr:hover td {
   }
 }
 
+/* Quotation Page */
+#q-content .card table td {
+  padding: 6px 0;
+}
+
+.q-charge-row input {
+  font-size: 0.813rem;
+}
+
+.q-charge-remove {
+  width: 32px;
+  height: 32px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .grid--2,

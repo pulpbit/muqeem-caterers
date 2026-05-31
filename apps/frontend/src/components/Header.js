@@ -31,6 +31,7 @@ export function renderHeader() {
       <a href="/dashboard" data-link>Dashboard</a>
       <a href="/calendar" data-link>Calendar</a>
       <a href="/menu" data-link>Menu</a>
+      <a href="/quotations" data-link>Quotations</a>
       <span style="font-size:0.813rem;color:var(--color-gray-500);padding:0 4px;">${user.name}</span>
       <button id="btn-logout" class="btn btn--sm btn--secondary">Logout</button>
     `;

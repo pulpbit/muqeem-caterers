@@ -5,6 +5,7 @@ import { loginPage } from './pages/Login.js';
 import { menuPage } from './pages/Menu.js';
 import { calendarPage } from './pages/Calendar.js';
 import { eventPlannerPage } from './pages/EventPlanner.js';
+import { quotationPage } from './pages/Quotation.js';
 import { checkSession } from './services/auth.js';
 import { authState } from './utils/authState.js';
 
@@ -37,7 +38,8 @@ router
     app.innerHTML = '<div class="container"><h1>Dashboard</h1><p>Coming soon in Phase 14.</p></div>';
   }))
   .add('/calendar', calendarPage)
-  .add('/menu', requireAuth(menuPage));
+  .add('/menu', requireAuth(menuPage))
+  .add('/quotations', requireAuth(quotationPage));
 
 async function init() {
   await checkSession();
